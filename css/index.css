@@ -33,7 +33,9 @@ body {
 .icon-medium{
   font-size: 38px;
 }
-
+.text-medium{
+  font-size: 25px;
+}
 .text-bold-with-margin{
   font-size: 18px;
   font-weight: 600;
@@ -94,7 +96,7 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-
+  
 }
 
 .gameWrap .first{

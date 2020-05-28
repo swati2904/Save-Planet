@@ -7,6 +7,7 @@ html,body {
   width:100%;
   height: 100%;
   margin: 0;
+  background: #F8F8F8;
   padding: 0;
   
 }
@@ -22,7 +23,7 @@ i{
   color:lightgray;
 }
 .icon-small{
-  font-size: 20px;
+  font-size: 35px;
   
 }
 .red{
@@ -31,7 +32,8 @@ i{
 
 /* --------------------------------------------main part ---------------------------------- */
 .main{
-
+  /* background-image: url("../assests/background_image3.png"); */
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,11 +44,18 @@ i{
 
 .main .ruleWrap div{
   line-height: 1.6;
-  
+  padding: 5px 0px;
+  font-weight: 600;
+  word-spacing: 1px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
 }
 
 .main .ruleWrap .iconText{
   font-size: 80px;
+  font-weight: 700;
+  
 }
 
 /* ---------------------------------   button styling  ---------------------------------------- */
@@ -54,7 +63,7 @@ i{
   border-radius: 4px;
   background-color: #74f41e;
   border: none;
-  color: rgb(10, 2, 2);
+  color: white;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
