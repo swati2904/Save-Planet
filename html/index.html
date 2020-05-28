@@ -1,0 +1,100 @@
+<html>
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Typing game</title>
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="animate.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="myProjects/webProject/icofont/css/icofont.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../css/index.css" />
+
+</head>
+
+<body>
+  <div class="gameWrap">
+    <!-- ----------------first div -------------------------------- -->
+      <div class="first">
+
+        <div class="progressbar">
+          <div class="beforeprogress">
+            <i class="fa fa-database icon-medium yellowlight"></i>
+            <div class="text-bold-with-margin darkgray">Level</div>
+          </div>
+          <progress class="progress" id="levelProgress" value="0"  max="100"  ></progress>
+          <div class="afterprogress" id="level">0/5</div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="progressbar">
+          <div class="beforeprogress">
+            <i class="fa fa-hourglass-end icon-medium parrot"></i>
+            <div class="text-bold-with-margin darkgray">Accuracy</div>
+          </div>
+          <progress class="progress"  value=" " max="100" id="progressAccuracyBar"></progress>
+          <div class="afterprogress" id="accuracybar">0%</div>
+        </div>
+
+      </div>
+
+      <!--------------- second div ----------------------------------->
+      <div class="second">
+        <div class="left">
+          <button class="button" id="start">START</button>
+    
+          <div class="card">
+            <i class="fa fa-times icon red"></i>
+            <h3>Wrong</h3>
+            <div id="wrong">0</div>
+          </div>
+    
+          <div class="card">
+            <i class="fa fa-check icon cyan"></i>
+            <h3>Correct</h3>
+            <div id="correct">0</div>
+          </div>
+    
+    
+    
+        </div>
+        <div class="middle">
+          <canvas id="canvas" width=640 height=450></canvas>
+    
+    
+          <div class="above-input"><i class="fa fa-tree icon yellow"></i><i class="fa fa-pagelines icon greenyellow"></i><i
+              class="fa fa-leaf icon yellowgreen"></i><i class="fa fa-globe icon icon-big lightskyblue"></i><i
+              class="fa fa-leaf icon yellowgreen"></i><i class="fa fa-pagelines icon greenyellow"></i><i
+              class="fa fa-tree icon yellow"></i></div>
+          <input type="text" placeholder="TYPE HERE..." class="input" id="inputText" value="" onkeyup="handleInput()"/>
+          <div class="below-input"><i class="fa fa-globe icon orange"></i>Save you planet my typing the names of diseases <i
+              class="fa fa-globe icon orange"></i></div>
+        </div>
+        <div class="right">
+          <button class="button" id="button2">RESET</button>
+    
+          <div class="card">
+            <i class="fa fa-history icon brown"></i>
+            <h3>Time</h3>
+            <div id="time">0</div>
+          </div>
+    
+          <div class="card">
+            <i class="fa fa-star icon yellowlight"></i>
+            <h3>Accuracy</h3>
+            <div id="accuracy">0</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <script src="../js/index.js"></script>
+ <script src="../js/words.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #E5FFB3;
+  --background-accent: #DBF8A3;
+  --background-accent-2: #BDE66E;
+  --light: #92DE34;
+  --dark: #69BC22;
+  --text: #025600;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+  width:100%;
+  height:100vh;
+  margin: 0;
+  padding: 0;
+  background: #333;
+  background-repeat: no-repeat;
+}
+
+/* --------------- GENERAL ------------- */
+
+.icon{
+  font-size: 33px;
+  color:lightgray;
+}
+.icon-big{
+  font-size: 50px;
+}
+.icon-medium{
+  font-size: 38px;
+}
+
+.text-bold-with-margin{
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.yellow{
+  color: lightgoldenrodyellow;
+}
+.yellowgreen{
+  color: yellowgreen;
+}
+.greenyellow{
+  color: greenyellow;
+}
+.lightskyblue{
+  color: lightskyblue;
+}
+.orange{
+  color: orange;
+}
+.yellowlight{
+  color: yellow;
+}
+.cyan{
+  color: cyan;
+}
+.red{
+  color: palevioletred;
+}
+.brown{
+  color: sandybrown;
+}
+.darkgray{
+  color: darkgray;
+}
+.parrot{
+  color: #00ff04;
+}
+
+.separator{
+  box-sizing: border-box;
+  width: 2px;
+  background: white;
+  height: 100%;
+  display: inline-block;
+  /* margin-top: 10px; */
+}
+
+
+
+/* -------------- LAYOUT ------------- */
+
+.gameWrap{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.gameWrap .first{
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gameWrap .first .progressbar{
+  width: 48%;
+  height: 100%;
+  display: flex;
+  
+}
+
+.progressbar .beforeprogress{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar .progress{
+  width: 60%; 
+  align-self: center;
+  display: flex;
+  align-items: center;
+  border: 2px solid white;
+}
+
+.progressbar .afterprogress{
+  width: 15%;
+  font-weight: 600;
+  text-align: center;
+  align-self: center;
+  color: white;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
+.gameWrap .first .levels {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.gameWrap .second{
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ 
+}
+.gameWrap .second .left{
+  width:20%;
+  height:90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.gameWrap .second .middle{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  margin-bottom: 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gameWrap .second .right{
+  width:20%;
+  height:90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+/*---------------BUTTON ------------*/
+button {
+  display: block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: var(--light);
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  background-size: 100% 100%;
+  box-shadow: 0 0 0 7px var(--light) inset;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  background-image: linear-gradient(
+    145deg,
+    transparent 10%,
+    var(--dark) 10% 20%,
+    transparent 20% 30%,
+    var(--dark) 30% 40%,
+    transparent 40% 50%,
+    var(--dark) 50% 60%,
+    transparent 60% 70%,
+    var(--dark) 70% 80%,
+    transparent 80% 90%,
+    var(--dark) 90% 100%
+  );
+  animation: background 3s linear infinite;
+}
+
+@keyframes background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+/* ---------------CARD-------------- */
+.card{
+  width:190px;
+  height:190px;
+  border:0.5px solid #838383;
+  background: #333;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  
+}
+.card h3{
+  color: darkgray;
+  margin: 10px 0 0;
+  padding: 0;
+  text-align: center;
+  font-size: 1.5em
+  
+}
+.card div{
+  font-size:60px;
+  font-weight:600;
+  color: #fff;
+}
+
+
+/* -------------------- INPUT ------------------- */
+.above-input{
+  display: flex;
+  justify-content: space-around;
+  width: 55%;
+  margin-bottom: 5px;
+  align-items: center;
+}
+.input{
+  width: 80%;
+  height: 55px;
+  padding: 18px;
+  font-size: 40px;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  border: none;
+  background: whitesmoke;
+  color: gray;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.below-input{
+  font-size: 14px;
+  font-weight: 600;
+  margin: 4px 0;
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #ECF0F1;
+}
+
+
+canvas {background:#333}
+.wordsWrap {
+	margin-top: 50px;
+}
+
+.words span{
+    font-size: 60px;
+    letter-spacing: 1px;
+    color: #ECF0F1;
+}

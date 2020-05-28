@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+html,body {
+  font-family: 'Raleway', sans-serif;
+  width:100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  
+}
+/*------------------------------------------------ general----------------------------------- */
+a{
+    text-decoration: none;
+}
+i{
+  margin-right: 8px;
+}
+.icon{
+  font-size: 100px;
+  color:lightgray;
+}
+.icon-small{
+  font-size: 20px;
+  
+}
+.red{
+  color: rgb(82, 224, 39);
+}
+
+/* --------------------------------------------main part ---------------------------------- */
+.main{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.main .ruleWrap div{
+  line-height: 1.6;
+  
+}
+
+.main .ruleWrap .iconText{
+  font-size: 80px;
+}
+
+/* ---------------------------------   button styling  ---------------------------------------- */
+.button {
+  border-radius: 4px;
+  background-color: #74f41e;
+  border: none;
+  color: rgb(10, 2, 2);
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.3s;
+}
+
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}

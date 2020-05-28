@@ -1,0 +1,23 @@
+var wordDictionary = ['acne', 'allergies', 'anxiety', 'asthma', 'eczema',
+  'sepsis', 'bonecancer', 'tumours', 'bulimia', 'bunion',
+  'chickenpox','cholesterol','coma', 'coldsore', 'constipation', 'coronovirus', 'cough', 'croup',
+  'dehydration', 'depression', 'diabetes', 'diarrhoea', 'dystonia',
+  'earche', 'earwax', 'ebola', 'eyecancer',
+  'fever','fibroids','flu','fungal',
+  'gallstones','gout',
+  'headaches','hearingloss','HIV','hives',
+  'insomnia','itching',
+  'kidneycancer',
+  'livercancer','lupus','lyme',
+  'malaria','measles','menopause','migraine','miscarriage','mouthcancer','mumps',
+  'NAFLD','nosebleed','norovirus',
+  'obesity','oralthrush',
+  'panicdisorder','pneumonia','PTSD',
+  'rosacea',
+  'scabies','sinus','skincancer','sorethroat','stress','stroke','suicide','sunburn',
+  'thirst','thyroid','toothache',
+  'urinaryinfection',
+  'vomiting','vulval',
+  'warts','whoopingcancer'
+];
+
