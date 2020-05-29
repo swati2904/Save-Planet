@@ -10,11 +10,19 @@ var level = document.getElementById('level');
 var levelProgress = document.getElementById('levelProgress');
 var accuracybar = document.getElementById('accuracybar');
 var progressAccuracyBar = document.getElementById('progressAccuracyBar');
+var game = document.getElementById('game');
+var modalAccuracy = document.getElementById('modalAccuracy');
+var modalLevel = document.getElementById('modalLevel');
+var modal = document.getElementById('modal');
+var modalHeading = document.getElementById('modalHeading');
+var modalIcon = document.getElementById('modalIcon');
 
-var TIMER = 60;
-var timer = TIMER;
-var SPEED = 0.3;
+var LEVEL = 3;
+var TIMER = 40;
+var SPEED =1;
 var POSSIBLE_MISSED = 3;
+
+var timer = TIMER;
 var value = 0;
 var sound;
 
@@ -26,68 +34,75 @@ var ctx = canvas.getContext("2d"),
 
 
 
-//------------- Globalvariables --------------------- 
+//------------- GLOBAL VARIABLE --------------------- 
 
 var text;
 var renderintervalId;
 var levelIntervalId;
 var levelIntervalTimerId;
-
-var scoringWord="";
+var gameIntervalId;
+var scoringWord = "";
 
 var score = {
-  correct:0,
-  missed:POSSIBLE_MISSED,
-  totalWords:0,
-  level:0,
-  overallAccuracy:0,
-  increaseTotalWords: function(){
+  correct: 0,
+  missed: POSSIBLE_MISSED,
+  totalWords: 0,
+  level: 0,
+  overallAccuracy: 0,
+  increaseTotalWords: function () {
     this.totalWords += 1;
   },
-  increaseCorrect: function(){
+  increaseCorrect: function () {
     this.correct += 1;
   },
-  decreaseMissed: function(){
+  decreaseMissed: function () {
     this.missed -= 1;
   },
-  getCorrect: function(){
+  getCorrect: function () {
     return this.correct;
   },
-  getMissed: function() {
+  getMissed: function () {
     return this.missed;
   },
-  getAccuracy:function(){
-    if(!this.totalWords){
+  getAccuracy: function () {
+    if (!this.totalWords) {
       return 0;
     }
-    return Math.floor((this.correct/this.totalWords)*100);
+    return Math.floor((this.correct / this.totalWords) * 100);
   },
-  getLevelBar: function(){
-    return 20*this.level;
+  getLevelBar: function () {
+    return 20 * this.level;
   },
-  increaseLevel: function(){
-    this.level +=1;
+  increaseLevel: function () {
+    this.level += 1;
   },
-  getLevel: function(){
-      return this.level + "/5";
+  getLevel: function () {
+    return this.level;
   },
-  // ---------------------------start---------------------
-  updateOverallAccuracy: function(){
+  updateOverallAccuracy: function () {
     let currentAccuracy = this.getAccuracy();
     let previousOverallAccuracy = this.overallAccuracy;
     let level = this.level;
-    this.overallAccuracy = (Math.floor(previousOverallAccuracy*(level-1)+currentAccuracy)/level);
+    if(level==0){
+      this.overallAccuracy = currentAccuracy;
+    }
+    else{
+      this.overallAccuracy = (Math.floor(previousOverallAccuracy * (level - 1) + currentAccuracy) / level);
+    }
   },
-  getOverallAccuracy:function(){
+  getOverallAccuracy: function () {
     return this.overallAccuracy;
   },
-
-  getOverallAccuracyBar: function(){
-    return Math.floor((this.correct/this.totalWords)*100);
+  getOverallAccuracyBar: function () {
+    return Math.floor((this.correct / this.totalWords) * 100);
   },
-  // ------------------------end--------------------------
-  reset: function(){
+  reset: function () {
     this.correct = 0; this.missed = POSSIBLE_MISSED; this.totalWords = 0;
+  },
+  resetAll: function(){
+    this.reset();
+    this.level = 0;
+    this.overallAccuracy = 0;
   }
 }
 
@@ -124,9 +139,10 @@ Text.prototype = {
       clearCanvas();
       score.decreaseMissed();
       renderScore();
-      if(score.getMissed()==0){    
+      if (score.getMissed() == 0) {
         // alert("YouLost");
         clearLevel(true);
+        openModal(true);
       }
     }
   },
@@ -144,13 +160,29 @@ function renderText() {
 }
 
 
-function clearRenderInterval(){
+function clearRenderInterval() {
   clearInterval(renderintervalId);
   renderintervalId = null;
   clearCanvas();
 }
 
-function clearLevel(isGameOver = false){
+// RESET THE GAME (same as before start playing)
+function resetGame(){
+
+  score.resetAll();
+  timer = TIMER;
+  renderScore();
+  time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
+}
+
+function resetScoreWithTimeRender(){
+  score.reset();
+  timer = TIMER;
+  renderScore();
+  time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
+}
+
+function clearLevel(isGameOver = false) {
   // clear timer
   clearInterval(levelIntervalTimerId);
   levelIntervalTimerId = null;
@@ -160,13 +192,11 @@ function clearLevel(isGameOver = false){
   // clear word's movement
   clearRenderInterval();
   input.value = "";
-  if(!isGameOver){
+  if (!isGameOver) {
     score.increaseLevel();
-    score.updateOverallAccuracy();
   }
-  score.reset();
-  timer=TIMER;
-  renderScore();
+  score.updateOverallAccuracy();
+  resetScoreWithTimeRender();
 }
 
 
@@ -174,31 +204,36 @@ function clearLevel(isGameOver = false){
 
 start.addEventListener("click", function () {
   renderGame();
+  // gameIntervalId = setInterval(renderGame);// call after every TIMER sec
 });
 
-function renderGame(){
+function renderGame() {
+  if(levelIntervalId){
+    return ;
+  }
+
   // START LEVEL
   renderScore();
-  levelIntervalId = setInterval(startGameLevel,10);  
+  levelIntervalId = setInterval(startGameLevel, 10);
   // START TICK TICK
-   levelIntervalTimerId = setInterval(countDown,1000);
+  levelIntervalTimerId = setInterval(countDown, 1000);
 }
 
 
-// --- calulate the time ---
+// ------ CALCULATE THE TIME -------------
 
-function countDown(){
+function countDown() {
   //check
-  if(timer > 0){
+  if (timer > 0) {
     //decrement time
-    timer --;
-  } else if(timer == 0){
+    timer--;
+  } else if (timer == 0) {
     //game end for current level
     clearLevel();
-    
-   }
-   // time display
-   time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
+
+  }
+  // time display
+  time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
   //  list.insertBefore(newItem, list.childNodes[0]);
   // time.insertBefore(timer, time.childNodes[2] );
 }
@@ -210,8 +245,9 @@ function startGameLevel() {
     return;
   }
   // logic for word selection
+  input.value = "";
   let word = getMeRandomWord();
-  scoringWord = word
+  scoringWord = word;
   text = new Text(word);
   renderintervalId = setInterval(renderText, 10);
 }
@@ -219,17 +255,16 @@ function startGameLevel() {
 
 //------------------------   HANDLING THE TYPING OPERATION ----------------------- //
 
-function handleInput(){
+function handleInput() {
   let currentWord = input.value;
   input.value = currentWord.toUpperCase();
   console.log(currentWord);
   console.log(scoringWord);
-  if(currentWord.toUpperCase()===scoringWord.toUpperCase()){
+  if (currentWord.toUpperCase() === scoringWord.toUpperCase()) {
     //  add the score
     //  clearInput
     //   clear  renderintervalId
     score.increaseCorrect();
-    input.value="";
     clearRenderInterval();
     renderScore();
   }
@@ -237,26 +272,61 @@ function handleInput(){
 
 
 //  EXTRA METHODS
-function renderScore(){
+function renderScore() {
   wrong.innerHTML = score.getMissed();
   correct.innerHTML = score.getCorrect();
   accuracy.innerHTML = `${score.getAccuracy()} <span class='text-medium'>%</span>`;
-  level.innerHTML = score.getLevel();
+  level.innerHTML = `${score.getLevel()}/${LEVEL}`;
   levelProgress.value = score.getLevelBar();
-  accuracybar.innerHTML = score.getOverallAccuracy()+"%";
+  accuracybar.innerHTML = score.getOverallAccuracy() + "%";
   progressAccuracyBar.value = score.getOverallAccuracy();
- 
+
 };
 
-// ------------------------ random words --------------------------------------------
+// render the values when page loads first time
+(function(){
+  renderScore();
+})();
 
-function getMeRandomWord(){
+// ------------------------ RANDOM WORDS --------------------------------------------
+
+function getMeRandomWord() {
   score.increaseTotalWords();
   let randomidx = Math.floor(Math.random() * (wordDictionary.length));   // 0 --- 75
   let word = wordDictionary[randomidx];
   return word;
+};
+
+
+// ----------------------SHOW MODAL ------------------------
+
+function openModal(isGameOver = false) {
+  let heading = isGameOver? "Game Over, You lost it!! 😓": "Hurrey, You Won The Game. 🥳" 
+  if(isGameOver){
+    modalIcon.classList.remove('fa-trophy');
+    modalIcon.classList.remove('parrot');
+    modalIcon.classList.add("fa-exclamation");
+    modalIcon.classList.add("redDark");
+    modal.style.backgroundColor="red";
+  }else{
+    modalIcon.classList.add('fa-trophy');
+    modalIcon.classList.add('parrot');
+    modalIcon.classList.remove("fa-exclamation");
+    modalIcon.classList.remove("redDark");
+    modal.style.backgroundColor="yellow";
+  }
+  modalLevel.innerHTML = `${score.getLevel()}/${LEVEL}`;
+  modalAccuracy.innerHTML = score.getOverallAccuracy() + "%";
+  modalHeading.innerHTML = heading;
+  
+  game.classList.add("disable");
+  modal.classList.add("show");
+  modal.classList.remove("hide");
+
+};
+function closeModal() {
+  resetGame();
+  game.classList.remove("disable");
+  modal.classList.remove("show");
+  modal.classList.add("hide");
 }
-
-
-
-

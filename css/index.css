@@ -19,6 +19,7 @@ body {
   padding: 0;
   background: #333;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 /* --------------- GENERAL ------------- */
@@ -75,6 +76,9 @@ body {
 .parrot{
   color: #00ff04;
 }
+.redDark{
+  color: red;
+}
 
 .separator{
   box-sizing: border-box;
@@ -85,6 +89,9 @@ body {
   /* margin-top: 10px; */
 }
 
+a{
+  text-decoration: none;
+}
 
 
 /* -------------- LAYOUT ------------- */
@@ -296,3 +303,103 @@ canvas {background:#333}
     letter-spacing: 1px;
     color: #ECF0F1;
 }
+
+
+/* ------------------------  Report Modal -------------- */
+.reportModal{
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  border: 1px solid white;
+  background: white;
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+  z-index: 1;
+}
+
+/* -----------------------------common css------------------------ */
+.modal-big-text{
+    font-size: 20px ;
+    font-weight: 600;
+    padding: 5px;
+}
+.icon-size-big{
+  font-size: 90px;
+  padding: 15px;
+}
+.disable{
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: -1;
+}
+.hide{
+  visibility: hidden;
+}
+
+.show{
+  visibility: visible;
+  pointer-events: visible;
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+}
+
+/* ------------------------- for win or loss status ---------------------- */
+.reportModal .gameStatus{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.reportModal .gameStatus .gameLevel {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  font-weight: 600;
+  text-align: center;
+}
+/* -------------------------- user overall accuracy and level ---------------------------- */
+.reportModal .gameAccuracyReport{
+  display: flex;
+  justify-content: space-between;
+  height: 40%;
+  width: 100%;
+  align-items: center;
+}
+.reportModal .gameAccuracyReport .userAccuracy{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reportModal .gameAccuracyReport .userLevel{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reportModal .modalCloseButton{
+  height: 20% ;
+  width: 100% ;
+  text-align: center;
+  align-items: center;
+}
+
+.modalButton{
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+

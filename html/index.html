@@ -17,24 +17,24 @@
 </head>
 
 <body>
-  <div class="gameWrap">
-    <!-- ----------------first div -------------------------------- -->
+  <div class="gameWrap" id="game">
+    <!-- ----------------------------------------FIRST CHILD------------------------------------>
     <div class="first">
 
       <div class="progressbar">
         <div class="beforeprogress">
-          <i class="fa fa-database icon-medium yellowlight"></i>
-          <div class="text-bold-with-margin darkgray">Level</div>
+          <i class="fa fa-database icon-medium lightskyblue"></i>
+          <div class="text-bold-with-margin darkgray">Achieved Level</div>
         </div>
         <progress class="progress" id="levelProgress" value="0" max="100"></progress>
-        <div class="afterprogress" id="level">0/5</div>
+        <div class="afterprogress" id="level"></div>
       </div>
 
       <div class="separator"></div>
 
       <div class="progressbar">
         <div class="beforeprogress">
-          <i class="fa fa-hourglass-end icon-medium parrot"></i>
+          <i class="fa fa-hourglass-end icon-medium orange"></i>
           <div class="text-bold-with-margin darkgray">Overall Accuracy</div>
         </div>
         <progress class="progress" value="0" max="100" id="progressAccuracyBar"></progress>
@@ -43,7 +43,7 @@
 
     </div>
 
-    <!--------------- second div ----------------------------------->
+    <!-------------------------------------------SECOND CHILD----------------------------------->
     <div class="second">
       <div class="left">
         <button class="button" id="start">START</button>
@@ -76,7 +76,7 @@
           <i class="fa fa-globe icon orange"></i></div>
       </div>
       <div class="right">
-        <button class="button" id="button2">RESET</button>
+        <button class="button" id="button2"><a href="../html/frontPage.html"><span>RESET</span></a></button>
 
         <div class="card">
           <i class="fa fa-history icon brown"></i>
@@ -94,8 +94,34 @@
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- ----------------------------------------THIRD CHILD------------------------------------->
+    
+
+
+  </div>
+  <div class="reportModal hide" id="modal">
+    <div class="gameStatus">
+      <i class="fa fa-trophy icon-size-big parrot" id="modalIcon"></i>
+      <!-- <i class="fa fa-exclamation icon-size-big redDark" ></i> -->
+      <div class="gameLevel" id="modalHeading">You Won The Game.🥳</div>
+    </div>
+    <div class="gameAccuracyReport">
+      <div class="userAccuracy">
+        <div class="accuracyText modal-big-text">Overall Accuracy</div>
+        <div class="accuracyShow modal-big-text" id="modalAccuracy">0%</div>
+      </div>
+      <div class="userLevel">
+        <div class="userLevelText modal-big-text">Reached Level</div>
+        <div class="userLevelShow modal-big-text" id="modalLevel">0/5</div>
+      </div>
+    </div>
+    <div class="modalCloseButton"> 
+      <input type="button" class="modalButton" value="OK" onclick="closeModal()"> 
+    </div>
+    
+    
+  </div>
   <script src="../js/index.js"></script>
   <script src="../js/words.js"></script>
 </body>
