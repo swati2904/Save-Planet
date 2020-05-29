@@ -7,7 +7,7 @@ var time = document.getElementById("time");
 var accuracy = document.getElementById("accuracy");
 var input = document.getElementById('inputText');
 var level = document.getElementById('level');
-var levelProgress = document.getElementById('levelProgress');
+// var levelProgress = document.getElementById('levelProgress');
 var accuracybar = document.getElementById('accuracybar');
 var progressAccuracyBar = document.getElementById('progressAccuracyBar');
 var game = document.getElementById('game');
@@ -16,9 +16,11 @@ var modalLevel = document.getElementById('modalLevel');
 var modal = document.getElementById('modal');
 var modalHeading = document.getElementById('modalHeading');
 var modalIcon = document.getElementById('modalIcon');
+var stars = document.getElementById('stars');
 
-var LEVEL = 3;
-var TIMER = 40;
+
+var LEVEL = 5;
+var TIMER = 10;
 var SPEED =1;
 var POSSIBLE_MISSED = 3;
 
@@ -87,7 +89,7 @@ var score = {
       this.overallAccuracy = currentAccuracy;
     }
     else{
-      this.overallAccuracy = (Math.floor(previousOverallAccuracy * (level - 1) + currentAccuracy) / level);
+      this.overallAccuracy = Math.floor((previousOverallAccuracy * (level - 1) + currentAccuracy) / level);
     }
   },
   getOverallAccuracy: function () {
@@ -234,8 +236,6 @@ function countDown() {
   }
   // time display
   time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
-  //  list.insertBefore(newItem, list.childNodes[0]);
-  // time.insertBefore(timer, time.childNodes[2] );
 }
 //------------------------   HANDLING THE WORDS MOVEMENT ----------------------- //
 
@@ -277,12 +277,26 @@ function renderScore() {
   correct.innerHTML = score.getCorrect();
   accuracy.innerHTML = `${score.getAccuracy()} <span class='text-medium'>%</span>`;
   level.innerHTML = `${score.getLevel()}/${LEVEL}`;
-  levelProgress.value = score.getLevelBar();
+  // levelProgress.value = score.getLevelBar();
+  updateRatingStars(score.getLevel());
   accuracybar.innerHTML = score.getOverallAccuracy() + "%";
   progressAccuracyBar.value = score.getOverallAccuracy();
 
 };
-
+function updateRatingStars(rating){
+  let filledStar = '<i class="fa fa-star md-10 icon-big fill"></i>';
+  let emptyStar = '<i class="fa fa-star md-10 icon-big empty"></i>';
+  let res='';
+  for(let i=1; i<=LEVEL;i++){
+    if(i<= rating){
+      res += filledStar;
+    }
+    else{
+      res += emptyStar;
+    }
+  }
+  stars.innerHTML = res;
+}
 // render the values when page loads first time
 (function(){
   renderScore();
@@ -304,16 +318,16 @@ function openModal(isGameOver = false) {
   let heading = isGameOver? "Game Over, You lost it!! 😓": "Hurrey, You Won The Game. 🥳" 
   if(isGameOver){
     modalIcon.classList.remove('fa-trophy');
-    modalIcon.classList.remove('parrot');
+    modalIcon.classList.remove('brightYellow');
     modalIcon.classList.add("fa-exclamation");
     modalIcon.classList.add("redDark");
-    modal.style.backgroundColor="red";
+    modal.style.backgroundColor="#ffa366";
   }else{
     modalIcon.classList.add('fa-trophy');
-    modalIcon.classList.add('parrot');
+    modalIcon.classList.add('brightYellow');
     modalIcon.classList.remove("fa-exclamation");
     modalIcon.classList.remove("redDark");
-    modal.style.backgroundColor="yellow";
+    modal.style.backgroundColor="#ff884d";
   }
   modalLevel.innerHTML = `${score.getLevel()}/${LEVEL}`;
   modalAccuracy.innerHTML = score.getOverallAccuracy() + "%";

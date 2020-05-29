@@ -23,7 +23,9 @@ body {
 }
 
 /* --------------- GENERAL ------------- */
-
+.md-10{
+  margin:10px;
+}
 .icon{
   font-size: 33px;
   color:lightgray;
@@ -78,6 +80,9 @@ body {
 }
 .redDark{
   color: red;
+}
+.brightYellow{
+  color: #ffff00;
 }
 
 .separator{
@@ -307,6 +312,7 @@ canvas {background:#333}
 
 /* ------------------------  Report Modal -------------- */
 .reportModal{
+  box-shadow: 7px 12px 10px black;
   position: absolute;
   width: 500px;
   height: 300px;
@@ -394,12 +400,45 @@ canvas {background:#333}
 }
 
 .modalButton{
+  font-family: 'Roboto', sans-serif;
   border: none;
   color: black;
-  padding: 16px 32px;
+  padding: 12px 30px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  background-color: white;
+  box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
 
 }
 
+.modalButton:hover{
+  background-color: #cccfcf;
+  box-shadow: 5px 15px 20px rgba(27, 31, 30, 0.568);
+  color: rgb(8, 8, 8);
+  transform: translateY(-7px);
+}
+
+
+
+/* --------------  STAR ------------------- */
+
+.starWrap{
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty{
+  color: gray;
+}
+.fill{
+  color:#ffff02;
+}
