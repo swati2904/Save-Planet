@@ -20,8 +20,8 @@ var stars = document.getElementById('stars');
 
 
 var LEVEL = 5;
-var TIMER = 10;
-var SPEED =1;
+var TIMER = 30;
+var SPEED = 0.6;
 var POSSIBLE_MISSED = 3;
 
 var timer = TIMER;
@@ -199,6 +199,10 @@ function clearLevel(isGameOver = false) {
   }
   score.updateOverallAccuracy();
   resetScoreWithTimeRender();
+  // GAME END CONDITION
+  if(score.getLevel()=== LEVEL){
+    openModal();
+  }
 }
 
 
@@ -232,7 +236,7 @@ function countDown() {
   } else if (timer == 0) {
     //game end for current level
     clearLevel();
-
+  
   }
   // time display
   time.innerHTML = `${timer} <span class='text-medium'>sec</span>`;
