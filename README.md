@@ -18,4 +18,4 @@
 
 # Sceenshot
 
-![] (https://github.com/swati2904/Save-Planet/blob/master/images/image1.png?raw=true)
+![] (https://raw.githubusercontent.com/swati2904/Save-Planet/master/images/image1.png)
