@@ -4,7 +4,7 @@
 * The Game is Based on once you typed the word you will get the point and increase the accuracy rate. 
 
 # Play the game here: :point_down:
-swati-typingdisease.netlify.app
+* click here: <a href="swati-typingdisease.netlify.app">swati-typingdisease.netlify.app</a>
 
 # Idea
 
